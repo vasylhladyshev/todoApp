@@ -1,0 +1,17 @@
+const Todo: React.Fc = ({task}) => {
+  <div data-cy="Todo" className="todo">
+    <label className="todo__status-label">
+      <input data-cy="TodoStatus" type="checkbox" className="todo__status" />
+    </label>
+
+    <span data-cy="TodoTitle" className="todo__title">
+      {task.name}
+    </span>
+
+    <button type="button" className="todo__remove" data-cy="TodoDelete">
+      ×
+    </button>
+  </div>;
+};
+
+export default Todo
