@@ -1,28 +1,45 @@
-const Todos: React.FC<{ tasks: { name: string }[] }> = ({ tasks }) => {
+import Todo from "../Todo/Todo";
+
+interface ChildComponentProps {
+  tasks: { name: string; completed: boolean; index: number }[];
+  setTasks: ([]) => void;
+  deleteTask: (index: number) => void;
+  handleCompleted: (task: {
+    name: string;
+    completed: boolean;
+    index: number;
+  }) => void;
+  handleChange: (
+    index: number
+  ) => (event: React.ChangeEvent<HTMLInputElement>) => void;
+  
+  
+}
+
+const Todos: React.FC<ChildComponentProps> = ({
+  tasks,
+  setTasks,
+  deleteTask,
+  handleCompleted,
+  handleChange,
+ 
+  
+}) => {
   return (
-    <section className="todoapp__main" data-cy="TodoList">
-      {tasks.map((task, index) => {
-        return (
-          <div key={index} data-cy="Todo" className="todo">
-            <label className="todo__status-label">
-              <input
-                data-cy="TodoStatus"
-                type="checkbox"
-                className="todo__status"
-              />
-            </label>
-
-            <span data-cy="TodoTitle" className="todo__title">
-              {task.name}
-            </span>
-
-            <button type="button" className="todo__remove" data-cy="TodoDelete">
-              ×
-            </button>
-          </div>
-        );
-      })}
-    </section>
+    <div>
+      {tasks.map((task, index) => (
+        <Todo
+          key={index}
+          task={task}
+          deleteTask={deleteTask}
+          handleCompleted={handleCompleted}
+          handleChange={handleChange}
+          tasks={tasks}
+          setTasks={setTasks}
+          
+        />
+      ))}
+    </div>
   );
 };
 
