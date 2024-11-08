@@ -12,6 +12,7 @@ const App: React.FC = () => {
   const [tasks, setTasks] = useState<Todo[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
   const [filter, setFilter] = useState<"all" | "active" | "completed">("all");
+  const [isActive, setIsActive] = useState<boolean>(true);
 
   const filteredTasks = tasks.filter((task) => {
     if (filter === "active") return !task.completed;
@@ -82,6 +83,10 @@ const App: React.FC = () => {
 
   const unCompletedTasks = tasks.filter((todo) => todo.completed === false);
 
+  const ToggleAll = () => {
+    setIsActive(!isActive);
+  }
+
   return (
     <div className="todoapp">
       <h1 className="todoapp__title">todos</h1>
@@ -90,8 +95,9 @@ const App: React.FC = () => {
         <header className="todoapp__header">
           <button
             type="button"
-            className="todoapp__toggle-all active"
+            className={`todoapp__toggle-all ${isActive ? "active" : ""}`}
             data-cy="ToggleAllButton"
+            onClick={ToggleAll}
           />
 
           <form onSubmit={handleSubmit}>
@@ -107,7 +113,7 @@ const App: React.FC = () => {
           </form>
         </header>
 
-        <section className="todoapp__main" data-cy="TodoList">
+        <section className={`todoapp__main${isActive ? "" : "__closed"}`} data-cy="TodoList">
           <Todos
             tasks={filteredTasks}
             deleteTask={deleteTask}

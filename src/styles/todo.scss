@@ -23,36 +23,36 @@
     padding: 5px;
   }
 
-  // Визуальный круглый элемент чекбокса
+  
   &__checkmark {
-    width: 24px; // Размер круга
+    width: 24px; 
     height: 24px;
-    background-color: #ccc; // Серый цвет для незаполненного состояния
-    border-radius: 50%; // Делаем круг
+    background-color: #ccc;
+    border-radius: 50%;
     position: relative;
-    margin-right: 10px; // Отступ справа от текста
-    transition: background-color 0.3s; // Плавная анимация при изменении состояния
+    margin-right: 10px;
+    transition: background-color 0.3s;
 
-    // Галочка внутри круга
+    
     &::after {
       content: "";
       position: absolute;
-      display: none; // Скрываем галочку по умолчанию
+      display: none;
       top: 5px;
       left: 7px;
       width: 6px;
       height: 12px;
       border: solid white;
       border-width: 0 2px 2px 0;
-      transform: rotate(45deg); // Поворот для создания галочки
+      transform: rotate(45deg); 
     }
   }
 
-  // Стили для активного состояния (когда чекбокс отмечен)
-  &__status:checked + &__checkmark {
-    background-color: #4CAF50; // Зелёный цвет для отмеченного состояния
 
-    // Показываем галочку, когда чекбокс активен
+  &__status:checked + &__checkmark {
+    background-color: #4CAF50; 
+
+   
     &::after {
       display: block;
     }
