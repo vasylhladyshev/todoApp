@@ -82,6 +82,7 @@ const App: React.FC = () => {
   };
 
   const unCompletedTasks = tasks.filter((todo) => todo.completed === false);
+  const completedTasks = tasks.filter((todo) => todo.completed === true);
 
   const ToggleAll = () => {
     setIsActive(!isActive);
@@ -162,7 +163,7 @@ const App: React.FC = () => {
             className="todoapp__clear-completed"
             data-cy="ClearCompletedButton"
             style={{
-              visibility: !unCompletedTasks.length ? "hidden" : "visible",
+              visibility: completedTasks.length ? "visible" : "hidden",
             }}
             onClick={deleteCompleted}
           >
